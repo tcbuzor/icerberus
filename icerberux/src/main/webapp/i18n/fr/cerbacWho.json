@@ -1,0 +1,25 @@
+{
+  "cerberuxApp": {
+    "cerbacWho": {
+      "home": {
+        "title": "CerbacWhos",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Cerbac Who",
+        "createOrEditLabel": "Créer ou éditer un Cerbac Who",
+        "notFound": "Aucun Cerbac Who trouvé"
+      },
+      "created": "Un nouveau Cerbac Who a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Cerbac Who avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Cerbac Who avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Cerbac Who {{ id }} ?"
+      },
+      "detail": {
+        "title": "Cerbac Who"
+      },
+      "id": "ID",
+      "name": "Name",
+      "cerbacEntity": "Cerbac Entity"
+    }
+  }
+}

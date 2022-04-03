@@ -1,0 +1,60 @@
+<div class="header">
+  <h1 mat-dialog-title><span style="color: red">{{ data.title }}</span></h1>
+<!--  <h1 mat-dialog-title><span style="color: red">Errors:{{ data.errors }}</span></h1>-->
+</div>
+<div mat-dialog-content>
+
+<!--  <div *ngIf="data.message?.length" class="alert alert-danger" role="alert">-->
+<!--    <ul class="alert-message-list">-->
+<!--      <li *ngFor="let error of data.message" class="alert-message">{{ error }}</li>-->
+<!--    </ul>-->
+    <div *ngIf="data.message?.length">
+      <div class="row">
+        <div class="col-md-6 col-style">
+          <div class="row border-1">
+            <div class="card" style="width: 20rem; height: 20rem;">
+              <div class="card-body">
+                <h6 class="card-title">Committed Policy</h6>
+
+                <table class="table table-bordered table-striped">
+                  <thead thead-dark>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Sid</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Error Type</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  <tr *ngFor="let item of data.errors?.committedPolicies ; let i = index">
+                    <th scope="row">{{i}}</th>
+                    <td>{{item.sid}}</td>
+                    <td>{{item.policyType}}</td>
+                    <td>{{item.errorType}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 border-1 col-style">
+          <div class="row">
+            <div class="card" style="width: 20rem; height: 20rem;">
+              <div class="card-body">
+                <h6 class="card-title">UnCommitted Policy</h6>
+                <p>Sid: {{data.errors.uncommittedPolicy?.sid}}</p>
+                <p>Policy Type: {{data.errors.uncommittedPolicy?.policyType}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+</div>
+<div mat-dialog-actions>
+  <button class="btn btn-cancel" style="margin-right:10px;" (click)="cancel()">{{ data.cancelText }}</button>
+</div>

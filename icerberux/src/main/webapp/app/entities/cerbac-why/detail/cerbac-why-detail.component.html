@@ -1,0 +1,32 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="cerbacWhy">
+      <h2 data-cy="cerbacWhyDetailsHeading"><span cplTranslate="cerberuxApp.cerbacWhy.detail.title">Cerbac Why</span></h2>
+
+      <hr />
+
+      <cpl-alert-error></cpl-alert-error>
+
+      <cpl-alert></cpl-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span cplTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ cerbacWhy.id }}</span>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacWhy.reason">Reason</span></dt>
+        <dd>
+          <span>{{ cerbacWhy.reason }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span cplTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/cerbac-why', cerbacWhy.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span cplTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

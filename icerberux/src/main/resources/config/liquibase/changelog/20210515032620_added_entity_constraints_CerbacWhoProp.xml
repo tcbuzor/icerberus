@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity CerbacWhoProp.
+    -->
+    <changeSet id="20210515032620-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="entity_property_id"
+                                 baseTableName="cerbac_who_prop"
+                                 constraintName="fk_cerbac_who_prop__entity_property_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cerbac_entity_prop"/>
+
+        <addForeignKeyConstraint baseColumnNames="policy_rule_id"
+                                 baseTableName="cerbac_who_prop"
+                                 constraintName="fk_cerbac_who_prop__policy_rule_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cerbac_policy_rule"/>
+    </changeSet>
+</databaseChangeLog>

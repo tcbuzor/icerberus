@@ -1,0 +1,24 @@
+{
+  "cerberuxApp": {
+    "cerbacWhy": {
+      "home": {
+        "title": "CerbacWhies",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Cerbac Why",
+        "createOrEditLabel": "Créer ou éditer un Cerbac Why",
+        "notFound": "Aucun Cerbac Why trouvé"
+      },
+      "created": "Un nouveau Cerbac Why a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Cerbac Why avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Cerbac Why avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Cerbac Why {{ id }} ?"
+      },
+      "detail": {
+        "title": "Cerbac Why"
+      },
+      "id": "ID",
+      "reason": "Reason"
+    }
+  }
+}

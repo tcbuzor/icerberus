@@ -1,0 +1,184 @@
+/**
+ * JHipster JDL model for cerberuxApp
+ */
+
+
+application {
+  config {
+    packageName edu.utdallas.cpl
+    baseName cerberux
+    applicationType monolith
+    databaseType sql
+    authenticationType 	jwt
+    buildTool maven
+    cacheProvider ehcache
+    clientFramework angularX
+    clientPackageManager npm
+    devDatabaseType 	h2Disk
+    enableHibernateCache 	true
+    jhiPrefix 	cpl
+    languages 	[en, fr, de]
+    nativeLanguage 	en
+    prodDatabaseType 	postgresql
+    serverPort 	9090
+    skipClient 	false
+    skipServer 	false
+    skipUserManagement 	false
+    testFrameworks 	[gatling]
+   // websocket 	spring-websocket
+
+  }
+  entities *
+}
+
+// ==============================
+// Entity definitions starts here
+// ==============================
+
+entity CerbacType {
+    name String required
+}
+
+// entity CerbacSubject {
+//     name String
+// }
+
+// entity CerbacObject {
+//     name String
+// }
+
+entity CerbacAction {
+    name String required unique
+}
+
+entity CerbacWho {
+    name String required
+}
+
+entity CerbacWhoProp {
+    name String required
+    value String required
+    condition ConditionEnum
+}
+
+entity CerbacWhat {
+    name String required
+}
+entity CerbacWhatAction {}
+
+entity CerbacWhatProp {
+    name String required
+    value String required
+    condition ConditionEnum
+}
+
+entity CerbacWhen {
+    whenCondition ConditionEnum
+    value String required
+}
+
+entity CerbacWhere {}
+
+entity CerbacWhereOrigin {
+    value String required
+}
+
+entity CerbacWhereTarget {
+    value String required
+}
+
+entity CerbacHow {
+    how String required
+}
+
+entity CerbacWhy {
+    reason String required
+}
+
+entity CerbacEntity {
+    name String required
+
+}
+
+entity CerbacEntityProp {
+    propName String required unique
+    // propValue String
+    // condition PropertyCondition
+
+}
+
+// entity CerbacEntityLink {}
+
+entity CerbacPolicy {
+  pid String required unique
+}
+
+entity CerbacPolicyRule {
+  sid String required unique
+}
+
+entity CerbacOntology {
+  source String required unique
+}
+
+enum ConditionEnum {
+    EQ, NEQ, GT, GTE, LT, LTE, BTW
+}
+// enum WhenCondition {
+//     EQ, NEQ, GT, GTE, LT, LTE, BTW
+// }
+
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+    // CerbacWhat{cerbacAction(name)} to CerbacAction
+    CerbacEntity{property(propName)} to CerbacEntityProp{cerbacEntity(name)}
+    CerbacPolicyRule{whoProperty(name)} to CerbacWhoProp{policyRule}
+    CerbacPolicyRule{whatProperty(name)} to CerbacWhatProp{policyRule}
+    CerbacPolicy{policyRule(sid)} to CerbacPolicyRule{cerbacPolicy(pid)}
+}
+
+relationship ManyToOne {
+    CerbacPolicyRule{who(name) required} to CerbacWho
+    CerbacPolicyRule{what(name) required} to CerbacWhat
+    CerbacPolicyRule{type(name) required} to CerbacType
+    CerbacWhere{origin(value)} to CerbacWhereOrigin{where}
+    CerbacWhere{target(value)} to CerbacWhereTarget{where}
+    // CerbacAction to CerbacWhat{cerbacAction(name)}
+    CerbacWhatAction{cebacWhat(name)} to CerbacWhat
+    CerbacWhatAction{cebacAction(name)} to CerbacAction
+}
+
+relationship OneToOne {
+    CerbacWho{cerbacEntity(name) required} to CerbacEntity
+    CerbacWhat{cerbacEntity(name) required} to CerbacEntity
+    CerbacPolicyRule{where} to CerbacWhere
+    CerbacPolicyRule{when} to CerbacWhen
+    CerbacPolicyRule{how} to CerbacHow
+    CerbacPolicyRule{why} to CerbacWhy
+    CerbacWhoProp{entityProperty(propName)} to CerbacEntityProp
+    CerbacWhatProp{entityProperty(propName)} to CerbacEntityProp
+
+}
+
+relationship ManyToMany {
+    CerbacPolicyRule{cerbacAction(name) required} to CerbacAction{cerbacPolicyRule}
+    // CerbacWhat{cerbacAction(name) required} to CerbacAction
+}
+
+
+
+// =======
+// Options
+// =======
+
+// Set pagination options
+//paginate JobHistory, Employee with infinite-scroll
+paginate CerbacEntity, CerbacEntityProp with pagination
+
+//dto * with mapstruct
+
+// Set service options to all
+//service all with serviceImpl
+// Set an angular suffix
+//angularSuffix * with cpl

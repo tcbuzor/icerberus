@@ -1,0 +1,25 @@
+{
+  "cerberuxApp": {
+    "cerbacAction": {
+      "home": {
+        "title": "CerbacActions",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Cerbac Action",
+        "createOrEditLabel": "Créer ou éditer un Cerbac Action",
+        "notFound": "Aucun Cerbac Action trouvé"
+      },
+      "created": "Un nouveau Cerbac Action a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Cerbac Action avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Cerbac Action avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Cerbac Action {{ id }} ?"
+      },
+      "detail": {
+        "title": "Cerbac Action"
+      },
+      "id": "ID",
+      "name": "Name",
+      "cerbacPolicyRule": "Cerbac Policy Rule"
+    }
+  }
+}

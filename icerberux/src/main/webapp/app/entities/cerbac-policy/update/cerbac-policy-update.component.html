@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="cpl-cerbac-policy-heading"
+        data-cy="CerbacPolicyCreateUpdateHeading"
+        cplTranslate="cerberuxApp.cerbacPolicy.home.createOrEditLabel"
+      >
+        Create or edit a Cerbac Policy
+      </h2>
+
+      <div>
+        <cpl-alert-error></cpl-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" cplTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacPolicy.pid" for="field_pid">Pid</label>
+          <input type="text" class="form-control" name="pid" id="field_pid" data-cy="pid" formControlName="pid" />
+          <div *ngIf="editForm.get('pid')!.invalid && (editForm.get('pid')!.dirty || editForm.get('pid')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('pid')?.errors?.required" cplTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" cplTranslate="cerberuxApp.cerbacPolicy.priority" for="field_priority">Priority</label>
+          <input type="number" class="form-control" name="priority" id="field_priority" data-cy="priority" formControlName="priority" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span cplTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span cplTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

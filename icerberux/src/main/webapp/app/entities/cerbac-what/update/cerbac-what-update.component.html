@@ -1,0 +1,74 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="cpl-cerbac-what-heading" data-cy="CerbacWhatCreateUpdateHeading" cplTranslate="cerberuxApp.cerbacWhat.home.createOrEditLabel">
+        Create or edit a Cerbac What
+      </h2>
+
+      <div>
+        <cpl-alert-error></cpl-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" cplTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacWhat.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" cplTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacWhat.cerbacEntity" for="field_cerbacEntity"
+            >Cerbac Entity</label
+          >
+          <select class="form-control" id="field_cerbacEntity" data-cy="cerbacEntity" name="cerbacEntity" formControlName="cerbacEntity">
+            <option *ngIf="editForm.get(['cerbacEntity'])!.value == null" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="
+                cerbacEntityOption.id === editForm.get('cerbacEntity')!.value?.id ? editForm.get('cerbacEntity')!.value : cerbacEntityOption
+              "
+              *ngFor="let cerbacEntityOption of cerbacEntitiesCollection; trackBy: trackCerbacEntityById"
+            >
+              {{ cerbacEntityOption.name }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['cerbacEntity'])!.invalid && (editForm.get(['cerbacEntity'])!.dirty || editForm.get(['cerbacEntity'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['cerbacEntity'])?.errors?.required"
+            cplTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span cplTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span cplTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity CerbacWhere.
+    -->
+    <changeSet id="20210515033120-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="origin_id"
+                                 baseTableName="cerbac_where"
+                                 constraintName="fk_cerbac_where__origin_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cerbac_where_origin"/>
+
+        <addForeignKeyConstraint baseColumnNames="target_id"
+                                 baseTableName="cerbac_where"
+                                 constraintName="fk_cerbac_where__target_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cerbac_where_target"/>
+    </changeSet>
+</databaseChangeLog>

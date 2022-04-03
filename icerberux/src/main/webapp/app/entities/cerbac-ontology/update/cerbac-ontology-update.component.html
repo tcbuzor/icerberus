@@ -1,0 +1,71 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            <h2
+              id="cpl-cerbac-ontology-heading"
+              data-cy="CerbacOntologyCreateUpdateHeading"
+              cplTranslate="cerberuxApp.cerbacOntology.home.createOrEditLabel">
+              Create or edit a Cerbac Ontology
+            </h2>
+          </mat-card-title>
+          <mat-card-subtitle>Add your ontology defined in a compliant ontology language</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+
+            <div>
+              <cpl-alert-error></cpl-alert-error>
+
+              <div class="mb-3" [hidden]="editForm.get('id')!.value == null">
+                <label class="form-label" cplTranslate="global.field.id" for="field_id">ID</label>
+                <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" cplTranslate="cerberuxApp.cerbacOntology.source" for="field_source">Source</label>
+                <input type="text" class="form-control" name="source" id="field_source" data-cy="source" formControlName="source" />
+                <div *ngIf="editForm.get('source')!.invalid && (editForm.get('source')!.dirty || editForm.get('source')!.touched)">
+                  <small class="form-text text-danger" *ngIf="editForm.get('source')?.errors?.required" cplTranslate="entity.validation.required">
+                    This field is required.
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+                <fa-icon icon="ban"></fa-icon>&nbsp;<span cplTranslate="entity.action.cancel">Cancel</span>
+              </button>
+
+              <button
+                type="submit"
+                id="save-entity"
+                data-cy="entityCreateSaveButton"
+                [disabled]="editForm.invalid || isSaving"
+                class="btn btn-primary"
+              >
+                <fa-icon icon="save"></fa-icon>&nbsp;<span cplTranslate="entity.action.save">Save</span>
+              </button>
+            </div>
+
+          </form>
+        </mat-card-content>
+
+        <mat-card-actions>
+
+        </mat-card-actions>
+
+        <!--    <div class="d-flex justify-content-center">-->
+        <!--      <div class="col-8">-->
+
+        <!--      </div>-->
+        <!--    </div>-->
+      </mat-card>
+    </div>
+  </div>
+
+</div>

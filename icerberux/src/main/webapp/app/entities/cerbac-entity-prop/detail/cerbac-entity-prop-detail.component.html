@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="cerbacEntityProp">
+      <h2 data-cy="cerbacEntityPropDetailsHeading">
+        <span cplTranslate="cerberuxApp.cerbacEntityProp.detail.title">Cerbac Entity Prop</span>
+      </h2>
+
+      <hr />
+
+      <cpl-alert-error></cpl-alert-error>
+
+      <cpl-alert></cpl-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span cplTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ cerbacEntityProp.id }}</span>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacEntityProp.propName">Prop Name</span></dt>
+        <dd>
+          <span>{{ cerbacEntityProp.propName }}</span>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacEntityProp.cerbacEntity">Cerbac Entity</span></dt>
+        <dd>
+          <div *ngIf="cerbacEntityProp.cerbacEntity">
+            <a [routerLink]="['/cerbac-entity', cerbacEntityProp.cerbacEntity?.id, 'view']">{{ cerbacEntityProp.cerbacEntity?.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span cplTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/cerbac-entity-prop', cerbacEntityProp.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span cplTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

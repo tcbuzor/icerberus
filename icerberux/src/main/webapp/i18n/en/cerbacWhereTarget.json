@@ -1,0 +1,25 @@
+{
+  "cerberuxApp": {
+    "cerbacWhereTarget": {
+      "home": {
+        "title": "Cerbac Where Targets",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Cerbac Where Target",
+        "createOrEditLabel": "Create or edit a Cerbac Where Target",
+        "notFound": "No Cerbac Where Targets found"
+      },
+      "created": "A new Cerbac Where Target is created with identifier {{ param }}",
+      "updated": "A Cerbac Where Target is updated with identifier {{ param }}",
+      "deleted": "A Cerbac Where Target is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cerbac Where Target {{ id }}?"
+      },
+      "detail": {
+        "title": "Cerbac Where Target"
+      },
+      "id": "ID",
+      "value": "Value",
+      "where": "Where"
+    }
+  }
+}

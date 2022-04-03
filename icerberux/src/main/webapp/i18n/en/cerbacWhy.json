@@ -1,0 +1,24 @@
+{
+  "cerberuxApp": {
+    "cerbacWhy": {
+      "home": {
+        "title": "Cerbac Whies",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Cerbac Why",
+        "createOrEditLabel": "Create or edit a Cerbac Why",
+        "notFound": "No Cerbac Whies found"
+      },
+      "created": "A new Cerbac Why is created with identifier {{ param }}",
+      "updated": "A Cerbac Why is updated with identifier {{ param }}",
+      "deleted": "A Cerbac Why is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cerbac Why {{ id }}?"
+      },
+      "detail": {
+        "title": "Cerbac Why"
+      },
+      "id": "ID",
+      "reason": "Reason"
+    }
+  }
+}

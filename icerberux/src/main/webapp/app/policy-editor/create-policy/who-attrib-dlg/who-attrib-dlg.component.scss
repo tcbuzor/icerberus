@@ -1,0 +1,20 @@
+.btn-cancel {
+  background-color: red;
+  color: #fff;
+}
+.mat-form-field {
+  width: 100%;
+}
+$table-font-color: #606c71;
+$table-border-color: #e9ebec;
+
+:host{
+    table{
+      color: $table-font-color;
+      tr {
+        td,th{
+          border: 1px solid $table-border-color;
+        }
+      }
+    }
+}

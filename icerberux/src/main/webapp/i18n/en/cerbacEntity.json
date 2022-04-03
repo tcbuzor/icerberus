@@ -1,0 +1,25 @@
+{
+  "cerberuxApp": {
+    "cerbacEntity": {
+      "home": {
+        "title": "Cerbac Entities",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Cerbac Entity",
+        "createOrEditLabel": "Create or edit a Cerbac Entity",
+        "notFound": "No Cerbac Entities found"
+      },
+      "created": "A new Cerbac Entity is created with identifier {{ param }}",
+      "updated": "A Cerbac Entity is updated with identifier {{ param }}",
+      "deleted": "A Cerbac Entity is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cerbac Entity {{ id }}?"
+      },
+      "detail": {
+        "title": "Cerbac Entity"
+      },
+      "id": "ID",
+      "name": "Name",
+      "property": "Property"
+    }
+  }
+}

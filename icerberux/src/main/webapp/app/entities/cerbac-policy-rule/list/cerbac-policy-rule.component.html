@@ -1,0 +1,133 @@
+<div>
+  <h2 id="page-heading" data-cy="CerbacPolicyRuleHeading">
+    <span cplTranslate="cerberuxApp.cerbacPolicyRule.home.title">Cerbac Policy Rules</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span cplTranslate="cerberuxApp.cerbacPolicyRule.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-cerbac-policy-rule"
+        [routerLink]="['/cerbac-policy-rule/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span cplTranslate="cerberuxApp.cerbacPolicyRule.home.createLabel"> Create a new Cerbac Policy Rule </span>
+      </button>
+    </div>
+  </h2>
+
+  <cpl-alert-error></cpl-alert-error>
+
+  <cpl-alert></cpl-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="cerbacPolicyRules?.length === 0">
+    <span cplTranslate="cerberuxApp.cerbacPolicyRule.home.notFound">No cerbacPolicyRules found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="cerbacPolicyRules && cerbacPolicyRules.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span cplTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacPolicyRule.sid">Sid</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacPolicyRule.where">Where</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacPolicyRule.when">When</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacPolicyRule.how">How</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacPolicyRule.why">Why</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacPolicyRule.who">Who</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacPolicyRule.what">What</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacPolicyRule.type">Type</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacPolicyRule.cerbacAction">Cerbac Action</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacPolicyRule.cerbacPolicy">Cerbac Policy</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cerbacPolicyRule of cerbacPolicyRules; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/cerbac-policy-rule', cerbacPolicyRule.id, 'view']">{{ cerbacPolicyRule.id }}</a>
+          </td>
+          <td>{{ cerbacPolicyRule.sid }}</td>
+          <td>
+            <div *ngIf="cerbacPolicyRule.where">
+              <a [routerLink]="['/cerbac-where', cerbacPolicyRule.where?.id, 'view']">{{ cerbacPolicyRule.where?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="cerbacPolicyRule.when">
+              <a [routerLink]="['/cerbac-when', cerbacPolicyRule.when?.id, 'view']">{{ cerbacPolicyRule.when?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="cerbacPolicyRule.how">
+              <a [routerLink]="['/cerbac-how', cerbacPolicyRule.how?.id, 'view']">{{ cerbacPolicyRule.how?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="cerbacPolicyRule.why">
+              <a [routerLink]="['/cerbac-why', cerbacPolicyRule.why?.id, 'view']">{{ cerbacPolicyRule.why?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="cerbacPolicyRule.who">
+              <a [routerLink]="['/cerbac-who', cerbacPolicyRule.who?.id, 'view']">{{ cerbacPolicyRule.who?.name }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="cerbacPolicyRule.what">
+              <a [routerLink]="['/cerbac-what', cerbacPolicyRule.what?.id, 'view']">{{ cerbacPolicyRule.what?.name }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="cerbacPolicyRule.type">
+              <a [routerLink]="['/cerbac-type', cerbacPolicyRule.type?.id, 'view']">{{ cerbacPolicyRule.type?.name }}</a>
+            </div>
+          </td>
+          <td>
+            <span *ngFor="let cerbacAction of cerbacPolicyRule.cerbacActions; let last = last">
+              <a class="form-control-static" [routerLink]="['/cerbac-action', cerbacAction.id, 'view']">{{ cerbacAction.name }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td>
+            <div *ngIf="cerbacPolicyRule.cerbacPolicy">
+              <a [routerLink]="['/cerbac-policy', cerbacPolicyRule.cerbacPolicy?.id, 'view']">{{ cerbacPolicyRule.cerbacPolicy?.pid }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/cerbac-policy-rule', cerbacPolicyRule.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" cplTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/cerbac-policy-rule', cerbacPolicyRule.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" cplTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(cerbacPolicyRule)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" cplTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

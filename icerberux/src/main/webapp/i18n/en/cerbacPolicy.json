@@ -1,0 +1,26 @@
+{
+  "cerberuxApp": {
+    "cerbacPolicy": {
+      "home": {
+        "title": "Cerbac Policies",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Cerbac Policy",
+        "createOrEditLabel": "Create or edit a Cerbac Policy",
+        "notFound": "No Cerbac Policies found"
+      },
+      "created": "A new Cerbac Policy is created with identifier {{ param }}",
+      "updated": "A Cerbac Policy is updated with identifier {{ param }}",
+      "deleted": "A Cerbac Policy is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cerbac Policy {{ id }}?"
+      },
+      "detail": {
+        "title": "Cerbac Policy"
+      },
+      "id": "ID",
+      "pid": "Pid",
+      "priority": "Priority",
+      "policyRule": "Policy Rule"
+    }
+  }
+}

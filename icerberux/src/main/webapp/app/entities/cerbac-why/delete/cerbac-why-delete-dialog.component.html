@@ -1,0 +1,25 @@
+<form *ngIf="cerbacWhy" name="deleteForm" (ngSubmit)="confirmDelete(cerbacWhy.id!)">
+  <div class="modal-header">
+    <h4 class="modal-title" data-cy="cerbacWhyDeleteDialogHeading" cplTranslate="entity.delete.title">Confirm delete operation</h4>
+
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="cancel()">&times;</button>
+  </div>
+
+  <div class="modal-body">
+    <cpl-alert-error></cpl-alert-error>
+
+    <p id="cpl-delete-cerbacWhy-heading" cplTranslate="cerberuxApp.cerbacWhy.delete.question" [translateValues]="{ id: cerbacWhy.id }">
+      Are you sure you want to delete this Cerbac Why?
+    </p>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+      <fa-icon icon="ban"></fa-icon>&nbsp;<span cplTranslate="entity.action.cancel">Cancel</span>
+    </button>
+
+    <button id="cpl-confirm-delete-cerbacWhy" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
+      <fa-icon icon="times"></fa-icon>&nbsp;<span cplTranslate="entity.action.delete">Delete</span>
+    </button>
+  </div>
+</form>

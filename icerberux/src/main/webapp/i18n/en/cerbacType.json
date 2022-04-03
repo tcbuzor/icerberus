@@ -1,0 +1,24 @@
+{
+  "cerberuxApp": {
+    "cerbacType": {
+      "home": {
+        "title": "Cerbac Types",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Cerbac Type",
+        "createOrEditLabel": "Create or edit a Cerbac Type",
+        "notFound": "No Cerbac Types found"
+      },
+      "created": "A new Cerbac Type is created with identifier {{ param }}",
+      "updated": "A Cerbac Type is updated with identifier {{ param }}",
+      "deleted": "A Cerbac Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cerbac Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Cerbac Type"
+      },
+      "id": "ID",
+      "name": "Name"
+    }
+  }
+}

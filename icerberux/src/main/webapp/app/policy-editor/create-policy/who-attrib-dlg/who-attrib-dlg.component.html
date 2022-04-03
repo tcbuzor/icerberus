@@ -1,0 +1,24 @@
+<div class="header">
+  <h1 mat-dialog-title>{{ data.title }}</h1>
+</div>
+<div mat-dialog-content>
+
+  <div *ngIf="data.message?.length" class="alert alert-danger" role="alert">
+    <ul class="alert-message-list">
+      <li *ngFor="let error of data.message" class="alert-message">{{ error }}</li>
+    </ul>
+  </div>
+
+    <div class="row mt-2">
+<!--      <p><label>Attributes</label></p>-->
+      <div class="col-md-12">
+        <ng2-smart-table [settings]="attributesSettings" [source]="attributesDataSource">
+        </ng2-smart-table>
+      </div>
+    </div>
+
+</div>
+<div mat-dialog-actions>
+  <button class="btn btn-cancel" style="margin-right:10px;" (click)="cancel()">{{ data.cancelText }}</button>
+ <button class="btn btn-primary" (click)="saveWhoAttributes()">Save Attributes</button>
+</div>

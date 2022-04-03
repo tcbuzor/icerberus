@@ -1,0 +1,24 @@
+{
+  "cerberuxApp": {
+    "cerbacHow": {
+      "home": {
+        "title": "CerbacHows",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Cerbac How",
+        "createOrEditLabel": "Créer ou éditer un Cerbac How",
+        "notFound": "Aucun Cerbac How trouvé"
+      },
+      "created": "Un nouveau Cerbac How a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Cerbac How avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Cerbac How avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Cerbac How {{ id }} ?"
+      },
+      "detail": {
+        "title": "Cerbac How"
+      },
+      "id": "ID",
+      "how": "How"
+    }
+  }
+}

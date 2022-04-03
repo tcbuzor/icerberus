@@ -1,0 +1,24 @@
+policy = {
+    pid : "ai233",
+    statements: [
+        {
+            sid : "s1212",
+            type : aplus,
+            who : "selec",
+            action : ["a1","a2"],
+            what :  "whataa",
+            trigger: "testTrigger",
+            why: "treatment",
+            how: "mobile",
+            when: "timet",
+            where: "fromx",
+        },
+        {
+            sid : "s1244",
+            type: ominus,
+            who : "bolo",
+            action : ["a1","a2"],
+            what :  "freda",
+        }
+    ]
+}

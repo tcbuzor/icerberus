@@ -1,0 +1,88 @@
+<div>
+  <h2 id="page-heading" data-cy="CerbacWhereHeading">
+    <span cplTranslate="cerberuxApp.cerbacWhere.home.title">Cerbac Wheres</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span cplTranslate="cerberuxApp.cerbacWhere.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-cerbac-where"
+        [routerLink]="['/cerbac-where/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span cplTranslate="cerberuxApp.cerbacWhere.home.createLabel"> Create a new Cerbac Where </span>
+      </button>
+    </div>
+  </h2>
+
+  <cpl-alert-error></cpl-alert-error>
+
+  <cpl-alert></cpl-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="cerbacWheres?.length === 0">
+    <span cplTranslate="cerberuxApp.cerbacWhere.home.notFound">No cerbacWheres found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="cerbacWheres && cerbacWheres.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span cplTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacWhere.origin">Origin</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacWhere.target">Target</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cerbacWhere of cerbacWheres; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/cerbac-where', cerbacWhere.id, 'view']">{{ cerbacWhere.id }}</a>
+          </td>
+          <td>
+            <div *ngIf="cerbacWhere.origin">
+              <a [routerLink]="['/cerbac-where-origin', cerbacWhere.origin?.id, 'view']">{{ cerbacWhere.origin?.value }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="cerbacWhere.target">
+              <a [routerLink]="['/cerbac-where-target', cerbacWhere.target?.id, 'view']">{{ cerbacWhere.target?.value }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/cerbac-where', cerbacWhere.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" cplTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/cerbac-where', cerbacWhere.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" cplTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(cerbacWhere)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" cplTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

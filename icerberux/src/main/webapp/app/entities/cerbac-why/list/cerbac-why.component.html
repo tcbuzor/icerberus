@@ -1,0 +1,78 @@
+<div>
+  <h2 id="page-heading" data-cy="CerbacWhyHeading">
+    <span cplTranslate="cerberuxApp.cerbacWhy.home.title">Cerbac Whies</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span cplTranslate="cerberuxApp.cerbacWhy.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-cerbac-why"
+        [routerLink]="['/cerbac-why/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span cplTranslate="cerberuxApp.cerbacWhy.home.createLabel"> Create a new Cerbac Why </span>
+      </button>
+    </div>
+  </h2>
+
+  <cpl-alert-error></cpl-alert-error>
+
+  <cpl-alert></cpl-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="cerbacWhies?.length === 0">
+    <span cplTranslate="cerberuxApp.cerbacWhy.home.notFound">No cerbacWhies found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="cerbacWhies && cerbacWhies.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span cplTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacWhy.reason">Reason</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cerbacWhy of cerbacWhies; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/cerbac-why', cerbacWhy.id, 'view']">{{ cerbacWhy.id }}</a>
+          </td>
+          <td>{{ cerbacWhy.reason }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/cerbac-why', cerbacWhy.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" cplTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/cerbac-why', cerbacWhy.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" cplTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(cerbacWhy)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" cplTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

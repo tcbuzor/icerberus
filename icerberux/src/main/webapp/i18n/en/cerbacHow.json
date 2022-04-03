@@ -1,0 +1,24 @@
+{
+  "cerberuxApp": {
+    "cerbacHow": {
+      "home": {
+        "title": "Cerbac Hows",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Cerbac How",
+        "createOrEditLabel": "Create or edit a Cerbac How",
+        "notFound": "No Cerbac Hows found"
+      },
+      "created": "A new Cerbac How is created with identifier {{ param }}",
+      "updated": "A Cerbac How is updated with identifier {{ param }}",
+      "deleted": "A Cerbac How is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cerbac How {{ id }}?"
+      },
+      "detail": {
+        "title": "Cerbac How"
+      },
+      "id": "ID",
+      "how": "How"
+    }
+  }
+}

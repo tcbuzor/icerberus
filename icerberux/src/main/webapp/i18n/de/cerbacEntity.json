@@ -1,0 +1,27 @@
+{
+  "cerberuxApp": {
+    "cerbacEntity": {
+      "home": {
+        "title": "Cerbac Entities",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Cerbac Entity erstellen",
+        "createOrEditLabel": "Cerbac Entity erstellen oder bearbeiten",
+        "notFound": "Keine Cerbac Entities gefunden"
+      },
+      "created": "Cerbac Entity erstellt mit ID {{ param }}",
+      "updated": "Cerbac Entity aktualisiert mit ID {{ param }}",
+      "deleted": "Cerbac Entity gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Cerbac Entity {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Cerbac Entity"
+      },
+      "id": "ID",
+      "name": "Name",
+      "isBase": "Is Base",
+      "parent": "Parent",
+      "ontology": "Ontology"
+    }
+  }
+}

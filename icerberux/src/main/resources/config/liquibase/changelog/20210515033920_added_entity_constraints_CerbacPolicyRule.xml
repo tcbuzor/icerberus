@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity CerbacPolicyRule.
+    -->
+    <changeSet id="20210515033920-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="where_id"
+                                 baseTableName="cerbac_policy_rule"
+                                 constraintName="fk_cerbac_policy_rule__where_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cerbac_where"/>
+
+        <addForeignKeyConstraint baseColumnNames="when_id"
+                                 baseTableName="cerbac_policy_rule"
+                                 constraintName="fk_cerbac_policy_rule__when_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cerbac_when"/>
+
+        <addForeignKeyConstraint baseColumnNames="how_id"
+                                 baseTableName="cerbac_policy_rule"
+                                 constraintName="fk_cerbac_policy_rule__how_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cerbac_how"/>
+
+        <addForeignKeyConstraint baseColumnNames="why_id"
+                                 baseTableName="cerbac_policy_rule"
+                                 constraintName="fk_cerbac_policy_rule__why_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cerbac_why"/>
+
+        <addForeignKeyConstraint baseColumnNames="who_id"
+                                 baseTableName="cerbac_policy_rule"
+                                 constraintName="fk_cerbac_policy_rule__who_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cerbac_who"/>
+
+        <addForeignKeyConstraint baseColumnNames="what_id"
+                                 baseTableName="cerbac_policy_rule"
+                                 constraintName="fk_cerbac_policy_rule__what_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cerbac_what"/>
+
+        <addForeignKeyConstraint baseColumnNames="type_id"
+                                 baseTableName="cerbac_policy_rule"
+                                 constraintName="fk_cerbac_policy_rule__type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cerbac_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="cerbac_policy_rule_id"
+                                 baseTableName="rel_cerbac_policy_rule__cerbac_action"
+                                 constraintName="fk_rel_cerbac_policy_rule__cerb__cerbac_policy_rule_cf_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cerbac_policy_rule"/>
+
+        <addForeignKeyConstraint baseColumnNames="cerbac_action_id"
+                                 baseTableName="rel_cerbac_policy_rule__cerbac_action"
+                                 constraintName="fk_rel_cerbac_policy_rule__cerbac_action__cerbac_action_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cerbac_action"/>
+
+        <addForeignKeyConstraint baseColumnNames="cerbac_policy_id"
+                                 baseTableName="cerbac_policy_rule"
+                                 constraintName="fk_cerbac_policy_rule__cerbac_policy_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cerbac_policy"/>
+    </changeSet>
+</databaseChangeLog>

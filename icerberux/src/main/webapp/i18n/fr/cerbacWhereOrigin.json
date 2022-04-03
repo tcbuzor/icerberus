@@ -1,0 +1,25 @@
+{
+  "cerberuxApp": {
+    "cerbacWhereOrigin": {
+      "home": {
+        "title": "CerbacWhereOrigins",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Cerbac Where Origin",
+        "createOrEditLabel": "Créer ou éditer un Cerbac Where Origin",
+        "notFound": "Aucun Cerbac Where Origin trouvé"
+      },
+      "created": "Un nouveau Cerbac Where Origin a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Cerbac Where Origin avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Cerbac Where Origin avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Cerbac Where Origin {{ id }} ?"
+      },
+      "detail": {
+        "title": "Cerbac Where Origin"
+      },
+      "id": "ID",
+      "value": "Value",
+      "where": "Where"
+    }
+  }
+}

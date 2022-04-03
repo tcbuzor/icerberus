@@ -1,0 +1,114 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="cpl-cerbac-what-prop-heading"
+        data-cy="CerbacWhatPropCreateUpdateHeading"
+        cplTranslate="cerberuxApp.cerbacWhatProp.home.createOrEditLabel"
+      >
+        Create or edit a Cerbac What Prop
+      </h2>
+
+      <div>
+        <cpl-alert-error></cpl-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" cplTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacWhatProp.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" cplTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacWhatProp.value" for="field_value">Value</label>
+          <input type="text" class="form-control" name="value" id="field_value" data-cy="value" formControlName="value" />
+          <div *ngIf="editForm.get('value')!.invalid && (editForm.get('value')!.dirty || editForm.get('value')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('value')?.errors?.required" cplTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacWhatProp.condition" for="field_condition">Condition</label>
+          <select class="form-control" name="condition" formControlName="condition" id="field_condition" data-cy="condition">
+            <option [ngValue]="null">{{ 'cerberuxApp.ConditionEnum.null' | translate }}</option>
+            <option value="EQ">{{ 'cerberuxApp.ConditionEnum.EQ' | translate }}</option>
+            <option value="NEQ">{{ 'cerberuxApp.ConditionEnum.NEQ' | translate }}</option>
+            <option value="GT">{{ 'cerberuxApp.ConditionEnum.GT' | translate }}</option>
+            <option value="GTE">{{ 'cerberuxApp.ConditionEnum.GTE' | translate }}</option>
+            <option value="LT">{{ 'cerberuxApp.ConditionEnum.LT' | translate }}</option>
+            <option value="LTE">{{ 'cerberuxApp.ConditionEnum.LTE' | translate }}</option>
+            <option value="BTW">{{ 'cerberuxApp.ConditionEnum.BTW' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacWhatProp.entityProperty" for="field_entityProperty"
+            >Entity Property</label
+          >
+          <select
+            class="form-control"
+            id="field_entityProperty"
+            data-cy="entityProperty"
+            name="entityProperty"
+            formControlName="entityProperty"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                cerbacEntityPropOption.id === editForm.get('entityProperty')!.value?.id
+                  ? editForm.get('entityProperty')!.value
+                  : cerbacEntityPropOption
+              "
+              *ngFor="let cerbacEntityPropOption of entityPropertiesCollection; trackBy: trackCerbacEntityPropById"
+            >
+              {{ cerbacEntityPropOption.propName }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacWhatProp.policyRule" for="field_policyRule">Policy Rule</label>
+          <select class="form-control" id="field_policyRule" data-cy="policyRule" name="policyRule" formControlName="policyRule">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                cerbacPolicyRuleOption.id === editForm.get('policyRule')!.value?.id
+                  ? editForm.get('policyRule')!.value
+                  : cerbacPolicyRuleOption
+              "
+              *ngFor="let cerbacPolicyRuleOption of cerbacPolicyRulesSharedCollection; trackBy: trackCerbacPolicyRuleById"
+            >
+              {{ cerbacPolicyRuleOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span cplTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span cplTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

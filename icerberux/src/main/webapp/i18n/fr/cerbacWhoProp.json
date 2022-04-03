@@ -1,0 +1,28 @@
+{
+  "cerberuxApp": {
+    "cerbacWhoProp": {
+      "home": {
+        "title": "CerbacWhoProps",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Cerbac Who Prop",
+        "createOrEditLabel": "Créer ou éditer un Cerbac Who Prop",
+        "notFound": "Aucun Cerbac Who Prop trouvé"
+      },
+      "created": "Un nouveau Cerbac Who Prop a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Cerbac Who Prop avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Cerbac Who Prop avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Cerbac Who Prop {{ id }} ?"
+      },
+      "detail": {
+        "title": "Cerbac Who Prop"
+      },
+      "id": "ID",
+      "name": "Name",
+      "value": "Value",
+      "condition": "Condition",
+      "entityProperty": "Entity Property",
+      "policyRule": "Policy Rule"
+    }
+  }
+}

@@ -1,0 +1,84 @@
+<div>
+  <h2 id="page-heading" data-cy="CerbacWhatHeading">
+    <span cplTranslate="cerberuxApp.cerbacWhat.home.title">Cerbac Whats</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span cplTranslate="cerberuxApp.cerbacWhat.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-cerbac-what"
+        [routerLink]="['/cerbac-what/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span cplTranslate="cerberuxApp.cerbacWhat.home.createLabel"> Create a new Cerbac What </span>
+      </button>
+    </div>
+  </h2>
+
+  <cpl-alert-error></cpl-alert-error>
+
+  <cpl-alert></cpl-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="cerbacWhats?.length === 0">
+    <span cplTranslate="cerberuxApp.cerbacWhat.home.notFound">No cerbacWhats found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="cerbacWhats && cerbacWhats.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span cplTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacWhat.name">Name</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacWhat.cerbacEntity">Cerbac Entity</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cerbacWhat of cerbacWhats; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/cerbac-what', cerbacWhat.id, 'view']">{{ cerbacWhat.id }}</a>
+          </td>
+          <td>{{ cerbacWhat.name }}</td>
+          <td>
+            <div *ngIf="cerbacWhat.cerbacEntity">
+              <a [routerLink]="['/cerbac-entity', cerbacWhat.cerbacEntity?.id, 'view']">{{ cerbacWhat.cerbacEntity?.name }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/cerbac-what', cerbacWhat.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" cplTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/cerbac-what', cerbacWhat.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" cplTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(cerbacWhat)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" cplTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

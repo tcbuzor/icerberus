@@ -1,0 +1,24 @@
+{
+  "cerberuxApp": {
+    "cerbacOntology": {
+      "home": {
+        "title": "Cerbac Ontologies",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Cerbac Ontology erstellen",
+        "createOrEditLabel": "Cerbac Ontology erstellen oder bearbeiten",
+        "notFound": "Keine Cerbac Ontologies gefunden"
+      },
+      "created": "Cerbac Ontology erstellt mit ID {{ param }}",
+      "updated": "Cerbac Ontology aktualisiert mit ID {{ param }}",
+      "deleted": "Cerbac Ontology gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Cerbac Ontology {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Cerbac Ontology"
+      },
+      "id": "ID",
+      "ontologyName": "Ontology Name"
+    }
+  }
+}

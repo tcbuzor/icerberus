@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="cpl-cerbac-where-heading"
+        data-cy="CerbacWhereCreateUpdateHeading"
+        cplTranslate="cerberuxApp.cerbacWhere.home.createOrEditLabel"
+      >
+        Create or edit a Cerbac Where
+      </h2>
+
+      <div>
+        <cpl-alert-error></cpl-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" cplTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacWhere.origin" for="field_origin">Origin</label>
+          <select class="form-control" id="field_origin" data-cy="origin" name="origin" formControlName="origin">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                cerbacWhereOriginOption.id === editForm.get('origin')!.value?.id ? editForm.get('origin')!.value : cerbacWhereOriginOption
+              "
+              *ngFor="let cerbacWhereOriginOption of cerbacWhereOriginsSharedCollection; trackBy: trackCerbacWhereOriginById"
+            >
+              {{ cerbacWhereOriginOption.value }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacWhere.target" for="field_target">Target</label>
+          <select class="form-control" id="field_target" data-cy="target" name="target" formControlName="target">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                cerbacWhereTargetOption.id === editForm.get('target')!.value?.id ? editForm.get('target')!.value : cerbacWhereTargetOption
+              "
+              *ngFor="let cerbacWhereTargetOption of cerbacWhereTargetsSharedCollection; trackBy: trackCerbacWhereTargetById"
+            >
+              {{ cerbacWhereTargetOption.value }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span cplTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span cplTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="cerbacPolicy">
+      <h2 data-cy="cerbacPolicyDetailsHeading"><span cplTranslate="cerberuxApp.cerbacPolicy.detail.title">Cerbac Policy</span></h2>
+
+      <hr />
+
+      <cpl-alert-error></cpl-alert-error>
+
+      <cpl-alert></cpl-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span cplTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ cerbacPolicy.id }}</span>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacPolicy.pid">Pid</span></dt>
+        <dd>
+          <span>{{ cerbacPolicy.pid }}</span>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacPolicy.priority">Priority</span></dt>
+        <dd>
+          <span>{{ cerbacPolicy.priority }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span cplTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/cerbac-policy', cerbacPolicy.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span cplTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

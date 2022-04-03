@@ -1,0 +1,89 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="cerbacPolicyRule">
+      <h2 data-cy="cerbacPolicyRuleDetailsHeading">
+        <span cplTranslate="cerberuxApp.cerbacPolicyRule.detail.title">Cerbac Policy Rule</span>
+      </h2>
+
+      <hr />
+
+      <cpl-alert-error></cpl-alert-error>
+
+      <cpl-alert></cpl-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span cplTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ cerbacPolicyRule.id }}</span>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacPolicyRule.sid">Sid</span></dt>
+        <dd>
+          <span>{{ cerbacPolicyRule.sid }}</span>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacPolicyRule.where">Where</span></dt>
+        <dd>
+          <div *ngIf="cerbacPolicyRule.where">
+            <a [routerLink]="['/cerbac-where', cerbacPolicyRule.where?.id, 'view']">{{ cerbacPolicyRule.where?.id }}</a>
+          </div>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacPolicyRule.when">When</span></dt>
+        <dd>
+          <div *ngIf="cerbacPolicyRule.when">
+            <a [routerLink]="['/cerbac-when', cerbacPolicyRule.when?.id, 'view']">{{ cerbacPolicyRule.when?.id }}</a>
+          </div>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacPolicyRule.how">How</span></dt>
+        <dd>
+          <div *ngIf="cerbacPolicyRule.how">
+            <a [routerLink]="['/cerbac-how', cerbacPolicyRule.how?.id, 'view']">{{ cerbacPolicyRule.how?.id }}</a>
+          </div>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacPolicyRule.why">Why</span></dt>
+        <dd>
+          <div *ngIf="cerbacPolicyRule.why">
+            <a [routerLink]="['/cerbac-why', cerbacPolicyRule.why?.id, 'view']">{{ cerbacPolicyRule.why?.id }}</a>
+          </div>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacPolicyRule.who">Who</span></dt>
+        <dd>
+          <div *ngIf="cerbacPolicyRule.who">
+            <a [routerLink]="['/cerbac-who', cerbacPolicyRule.who?.id, 'view']">{{ cerbacPolicyRule.who?.name }}</a>
+          </div>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacPolicyRule.what">What</span></dt>
+        <dd>
+          <div *ngIf="cerbacPolicyRule.what">
+            <a [routerLink]="['/cerbac-what', cerbacPolicyRule.what?.id, 'view']">{{ cerbacPolicyRule.what?.name }}</a>
+          </div>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacPolicyRule.type">Type</span></dt>
+        <dd>
+          <div *ngIf="cerbacPolicyRule.type">
+            <a [routerLink]="['/cerbac-type', cerbacPolicyRule.type?.id, 'view']">{{ cerbacPolicyRule.type?.name }}</a>
+          </div>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacPolicyRule.cerbacAction">Cerbac Action</span></dt>
+        <dd>
+          <span *ngFor="let cerbacAction of cerbacPolicyRule.cerbacActions; let last = last">
+            <a [routerLink]="['/cerbac-action', cerbacAction?.id, 'view']">{{ cerbacAction.name }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacPolicyRule.cerbacPolicy">Cerbac Policy</span></dt>
+        <dd>
+          <div *ngIf="cerbacPolicyRule.cerbacPolicy">
+            <a [routerLink]="['/cerbac-policy', cerbacPolicyRule.cerbacPolicy?.id, 'view']">{{ cerbacPolicyRule.cerbacPolicy?.pid }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span cplTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/cerbac-policy-rule', cerbacPolicyRule.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span cplTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

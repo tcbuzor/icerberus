@@ -1,0 +1,77 @@
+<div class="container">
+  <h2 id="page-heading" data-cy="CerbacOntologyHeading">
+    <span cplTranslate="cerberuxApp.cerbacOntology.home.title">Cerbac Ontologies</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span cplTranslate="cerberuxApp.cerbacOntology.home.refreshListLabel">Refresh List</span>
+      </button>
+      <span class="mpr-5"></span>
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-cerbac-ontology"
+        [routerLink]="['/cerbac-ontology/new']">
+        <fa-icon icon="plus"></fa-icon>
+        <span cplTranslate="cerberuxApp.cerbacOntology.home.createLabel"> Create a new Cerbac Ontology </span>
+      </button>
+    </div>
+  </h2>
+
+  <cpl-alert-error></cpl-alert-error>
+
+  <cpl-alert></cpl-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="cerbacOntologies?.length === 0">
+    <span cplTranslate="cerberuxApp.cerbacOntology.home.notFound">No cerbacOntologies found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="cerbacOntologies && cerbacOntologies.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span cplTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacOntology.source">Source</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cerbacOntology of cerbacOntologies; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/cerbac-ontology', cerbacOntology.id, 'view']">{{ cerbacOntology.id }}</a>
+          </td>
+          <td>{{ cerbacOntology.source }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/cerbac-ontology', cerbacOntology.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" cplTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/cerbac-ontology', cerbacOntology.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" cplTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(cerbacOntology)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" cplTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

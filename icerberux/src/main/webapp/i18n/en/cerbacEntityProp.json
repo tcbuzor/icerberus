@@ -1,0 +1,25 @@
+{
+  "cerberuxApp": {
+    "cerbacEntityProp": {
+      "home": {
+        "title": "Cerbac Entity Props",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Cerbac Entity Prop",
+        "createOrEditLabel": "Create or edit a Cerbac Entity Prop",
+        "notFound": "No Cerbac Entity Props found"
+      },
+      "created": "A new Cerbac Entity Prop is created with identifier {{ param }}",
+      "updated": "A Cerbac Entity Prop is updated with identifier {{ param }}",
+      "deleted": "A Cerbac Entity Prop is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cerbac Entity Prop {{ id }}?"
+      },
+      "detail": {
+        "title": "Cerbac Entity Prop"
+      },
+      "id": "ID",
+      "propName": "Prop Name",
+      "cerbacEntity": "Cerbac Entity"
+    }
+  }
+}

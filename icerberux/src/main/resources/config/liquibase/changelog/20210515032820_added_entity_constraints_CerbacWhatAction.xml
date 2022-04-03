@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity CerbacWhatAction.
+    -->
+    <changeSet id="20210515032820-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="cebac_what_id"
+                                 baseTableName="cerbac_what_action"
+                                 constraintName="fk_cerbac_what_action__cebac_what_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cerbac_what"/>
+
+        <addForeignKeyConstraint baseColumnNames="cebac_action_id"
+                                 baseTableName="cerbac_what_action"
+                                 constraintName="fk_cerbac_what_action__cebac_action_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cerbac_action"/>
+    </changeSet>
+</databaseChangeLog>

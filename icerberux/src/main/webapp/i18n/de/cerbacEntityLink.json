@@ -1,0 +1,23 @@
+{
+  "cerberuxApp": {
+    "cerbacEntityLink": {
+      "home": {
+        "title": "Cerbac Entity Links",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Cerbac Entity Link erstellen",
+        "createOrEditLabel": "Cerbac Entity Link erstellen oder bearbeiten",
+        "notFound": "Keine Cerbac Entity Links gefunden"
+      },
+      "created": "Cerbac Entity Link erstellt mit ID {{ param }}",
+      "updated": "Cerbac Entity Link aktualisiert mit ID {{ param }}",
+      "deleted": "Cerbac Entity Link gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Cerbac Entity Link {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Cerbac Entity Link"
+      },
+      "id": "ID"
+    }
+  }
+}

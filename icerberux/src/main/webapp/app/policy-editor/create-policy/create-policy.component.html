@@ -1,0 +1,22 @@
+<div class="container">
+
+<!--  <mat-card class="card-wrapper">-->
+    <mat-horizontal-stepper linear #stepper>
+      <mat-step [stepControl]="policySC">
+        <ng-template matStepLabel>Policy Info</ng-template>
+        <cpl-policy-step></cpl-policy-step>
+      </mat-step>
+      <mat-step [stepControl]="policyRuleSC">
+        <ng-template matStepLabel>Policy Rules</ng-template>
+        <cpl-policy-rules-step [whatEntities]="whatEntities"
+                               [whoEntities]="whoEntities"
+                               [actions]="actions"
+                               [howEntities]="howEntities"
+                               [whyEntities]="whyEntities">
+
+        </cpl-policy-rules-step>
+      </mat-step>
+    </mat-horizontal-stepper>
+<!--  </mat-card>-->
+
+</div>

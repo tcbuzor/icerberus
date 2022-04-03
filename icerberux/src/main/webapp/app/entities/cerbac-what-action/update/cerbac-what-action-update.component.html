@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="cpl-cerbac-what-action-heading"
+        data-cy="CerbacWhatActionCreateUpdateHeading"
+        cplTranslate="cerberuxApp.cerbacWhatAction.home.createOrEditLabel"
+      >
+        Create or edit a Cerbac What Action
+      </h2>
+
+      <div>
+        <cpl-alert-error></cpl-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" cplTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacWhatAction.cebacWhat" for="field_cebacWhat">Cebac What</label>
+          <select class="form-control" id="field_cebacWhat" data-cy="cebacWhat" name="cebacWhat" formControlName="cebacWhat">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="cerbacWhatOption.id === editForm.get('cebacWhat')!.value?.id ? editForm.get('cebacWhat')!.value : cerbacWhatOption"
+              *ngFor="let cerbacWhatOption of cerbacWhatsSharedCollection; trackBy: trackCerbacWhatById"
+            >
+              {{ cerbacWhatOption.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacWhatAction.cebacAction" for="field_cebacAction"
+            >Cebac Action</label
+          >
+          <select class="form-control" id="field_cebacAction" data-cy="cebacAction" name="cebacAction" formControlName="cebacAction">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                cerbacActionOption.id === editForm.get('cebacAction')!.value?.id ? editForm.get('cebacAction')!.value : cerbacActionOption
+              "
+              *ngFor="let cerbacActionOption of cerbacActionsSharedCollection; trackBy: trackCerbacActionById"
+            >
+              {{ cerbacActionOption.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span cplTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span cplTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="cerbacWhatProp">
+      <h2 data-cy="cerbacWhatPropDetailsHeading"><span cplTranslate="cerberuxApp.cerbacWhatProp.detail.title">Cerbac What Prop</span></h2>
+
+      <hr />
+
+      <cpl-alert-error></cpl-alert-error>
+
+      <cpl-alert></cpl-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span cplTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ cerbacWhatProp.id }}</span>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacWhatProp.name">Name</span></dt>
+        <dd>
+          <span>{{ cerbacWhatProp.name }}</span>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacWhatProp.value">Value</span></dt>
+        <dd>
+          <span>{{ cerbacWhatProp.value }}</span>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacWhatProp.condition">Condition</span></dt>
+        <dd>
+          <span cplTranslate="{{ 'cerberuxApp.ConditionEnum.' + cerbacWhatProp.condition }}">{{ cerbacWhatProp.condition }}</span>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacWhatProp.entityProperty">Entity Property</span></dt>
+        <dd>
+          <div *ngIf="cerbacWhatProp.entityProperty">
+            <a [routerLink]="['/cerbac-entity-prop', cerbacWhatProp.entityProperty?.id, 'view']">{{
+              cerbacWhatProp.entityProperty?.propName
+            }}</a>
+          </div>
+        </dd>
+        <dt><span cplTranslate="cerberuxApp.cerbacWhatProp.policyRule">Policy Rule</span></dt>
+        <dd>
+          <div *ngIf="cerbacWhatProp.policyRule">
+            <a [routerLink]="['/cerbac-policy-rule', cerbacWhatProp.policyRule?.id, 'view']">{{ cerbacWhatProp.policyRule?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span cplTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/cerbac-what-prop', cerbacWhatProp.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span cplTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

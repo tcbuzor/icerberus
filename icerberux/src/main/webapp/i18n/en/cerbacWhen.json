@@ -1,0 +1,25 @@
+{
+  "cerberuxApp": {
+    "cerbacWhen": {
+      "home": {
+        "title": "Cerbac Whens",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Cerbac When",
+        "createOrEditLabel": "Create or edit a Cerbac When",
+        "notFound": "No Cerbac Whens found"
+      },
+      "created": "A new Cerbac When is created with identifier {{ param }}",
+      "updated": "A Cerbac When is updated with identifier {{ param }}",
+      "deleted": "A Cerbac When is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Cerbac When {{ id }}?"
+      },
+      "detail": {
+        "title": "Cerbac When"
+      },
+      "id": "ID",
+      "whenCondition": "When Condition",
+      "value": "Value"
+    }
+  }
+}

@@ -1,0 +1,202 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="cpl-cerbac-policy-rule-heading"
+        data-cy="CerbacPolicyRuleCreateUpdateHeading"
+        cplTranslate="cerberuxApp.cerbacPolicyRule.home.createOrEditLabel"
+      >
+        Create or edit a Cerbac Policy Rule
+      </h2>
+
+      <div>
+        <cpl-alert-error></cpl-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" cplTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacPolicyRule.sid" for="field_sid">Sid</label>
+          <input type="text" class="form-control" name="sid" id="field_sid" data-cy="sid" formControlName="sid" />
+          <div *ngIf="editForm.get('sid')!.invalid && (editForm.get('sid')!.dirty || editForm.get('sid')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('sid')?.errors?.required" cplTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacPolicyRule.where" for="field_where">Where</label>
+          <select class="form-control" id="field_where" data-cy="where" name="where" formControlName="where">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="cerbacWhereOption.id === editForm.get('where')!.value?.id ? editForm.get('where')!.value : cerbacWhereOption"
+              *ngFor="let cerbacWhereOption of wheresCollection; trackBy: trackCerbacWhereById">
+              {{ cerbacWhereOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacPolicyRule.when" for="field_when">When</label>
+          <select class="form-control" id="field_when" data-cy="when" name="when" formControlName="when">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="cerbacWhenOption.id === editForm.get('when')!.value?.id ? editForm.get('when')!.value : cerbacWhenOption"
+              *ngFor="let cerbacWhenOption of whensCollection; trackBy: trackCerbacWhenById"
+            >
+              {{ cerbacWhenOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacPolicyRule.how" for="field_how">How</label>
+          <select class="form-control" id="field_how" data-cy="how" name="how" formControlName="how">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="cerbacHowOption.id === editForm.get('how')!.value?.id ? editForm.get('how')!.value : cerbacHowOption"
+              *ngFor="let cerbacHowOption of howsCollection; trackBy: trackCerbacHowById"
+            >
+              {{ cerbacHowOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacPolicyRule.why" for="field_why">Why</label>
+          <select class="form-control" id="field_why" data-cy="why" name="why" formControlName="why">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="cerbacWhyOption.id === editForm.get('why')!.value?.id ? editForm.get('why')!.value : cerbacWhyOption"
+              *ngFor="let cerbacWhyOption of whiesCollection; trackBy: trackCerbacWhyById"
+            >
+              {{ cerbacWhyOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacPolicyRule.who" for="field_who">Who</label>
+          <select class="form-control" id="field_who" data-cy="who" name="who" formControlName="who">
+            <option *ngIf="!editForm.get('who')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="cerbacWhoOption.id === editForm.get('who')!.value?.id ? editForm.get('who')!.value : cerbacWhoOption"
+              *ngFor="let cerbacWhoOption of cerbacWhosSharedCollection; trackBy: trackCerbacWhoById"
+            >
+              {{ cerbacWhoOption.name }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['who'])!.invalid && (editForm.get(['who'])!.dirty || editForm.get(['who'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['who'])?.errors?.required" cplTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacPolicyRule.what" for="field_what">What</label>
+          <select class="form-control" id="field_what" data-cy="what" name="what" formControlName="what">
+            <option *ngIf="!editForm.get('what')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="cerbacWhatOption.id === editForm.get('what')!.value?.id ? editForm.get('what')!.value : cerbacWhatOption"
+              *ngFor="let cerbacWhatOption of cerbacWhatsSharedCollection; trackBy: trackCerbacWhatById"
+            >
+              {{ cerbacWhatOption.name }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['what'])!.invalid && (editForm.get(['what'])!.dirty || editForm.get(['what'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['what'])?.errors?.required" cplTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacPolicyRule.type" for="field_type">Type</label>
+          <select class="form-control" id="field_type" data-cy="type" name="type" formControlName="type">
+            <option *ngIf="!editForm.get('type')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="cerbacTypeOption.id === editForm.get('type')!.value?.id ? editForm.get('type')!.value : cerbacTypeOption"
+              *ngFor="let cerbacTypeOption of cerbacTypesSharedCollection; trackBy: trackCerbacTypeById"
+            >
+              {{ cerbacTypeOption.name }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['type'])!.invalid && (editForm.get(['type'])!.dirty || editForm.get(['type'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['type'])?.errors?.required" cplTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label cplTranslate="cerberuxApp.cerbacPolicyRule.cerbacAction" for="field_cerbacActions">Cerbac Action</label>
+          <select
+            class="form-control"
+            id="field_cerbacActions"
+            data-cy="cerbacAction"
+            multiple
+            name="cerbacActions"
+            formControlName="cerbacActions"
+          >
+            <option
+              [ngValue]="getSelectedCerbacAction(cerbacActionOption, editForm.get('cerbacActions')!.value)"
+              *ngFor="let cerbacActionOption of cerbacActionsSharedCollection; trackBy: trackCerbacActionById"
+            >
+              {{ cerbacActionOption.name }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['cerbacActions'])!.invalid && (editForm.get(['cerbacActions'])!.dirty || editForm.get(['cerbacActions'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['cerbacActions'])?.errors?.required"
+            cplTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" cplTranslate="cerberuxApp.cerbacPolicyRule.cerbacPolicy" for="field_cerbacPolicy"
+            >Cerbac Policy</label
+          >
+          <select class="form-control" id="field_cerbacPolicy" data-cy="cerbacPolicy" name="cerbacPolicy" formControlName="cerbacPolicy">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                cerbacPolicyOption.id === editForm.get('cerbacPolicy')!.value?.id ? editForm.get('cerbacPolicy')!.value : cerbacPolicyOption
+              "
+              *ngFor="let cerbacPolicyOption of cerbacPoliciesSharedCollection; trackBy: trackCerbacPolicyById"
+            >
+              {{ cerbacPolicyOption.pid }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span cplTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span cplTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

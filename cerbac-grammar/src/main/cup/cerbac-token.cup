@@ -1,0 +1,319 @@
+
+import java_cup.runtime.*;
+import java.util.*;
+
+parser code {:
+
+    public void report_error(String message, Object info) {
+
+        StringBuffer m = new StringBuffer("Error");
+
+        if (info instanceof java_cup.runtime.Symbol) {
+            java_cup.runtime.Symbol s = ((java_cup.runtime.Symbol) info);
+            if (s.left >= 0) {
+                /* Add to the end of the StringBuffer error message
+                   the line number of the error in the input. */
+                m.append(" in line "+(s.left+1));
+                /* Check if the column number in the input is greater
+                   or equal to zero. */
+                if (s.right >= 0)
+                    /* Add to the end of the StringBuffer error message
+                       the column number of the error in the input. */
+                    m.append(", column "+(s.right+1));
+            }
+        }
+
+
+        m.append(" : "+message);
+        System.err.println(m);
+    }
+
+    public void report_fatal_error(String message, Object info) {
+        report_error(message, info);
+        System.exit(1);
+    }
+:};
+
+
+
+terminal AND;
+terminal READ;
+terminal PRINT;
+terminal PRINTLN;
+terminal RETURN;
+terminal OR;
+terminal TIMES;
+terminal PLUS;
+terminal PLUSPLUS;
+terminal MINUS;
+terminal MINUSMINUS;
+terminal PREFIXPLUS;
+terminal PREFIXMINUS;
+terminal DIVIDE;
+terminal SEMI;
+terminal LEFT_PAREN;
+terminal RT_PAREN;
+terminal LEFT_BRACE;
+terminal RT_BRACE;
+terminal LEFT_BRKT;
+terminal RT_BRKT;
+terminal EQEQ;
+terminal GTR;
+terminal LESS;
+terminal LESS_EQ;
+terminal GTR_EQ;
+terminal NOT_EQ;
+terminal NOT;
+terminal CONDITION;
+terminal COLON;
+terminal ASSMNT;
+terminal COMMA;
+terminal FINAL;
+terminal VOID;
+terminal TRUE;
+terminal FALSE;
+
+terminal String INT;
+terminal String FLOAT;
+terminal String BOOL;
+terminal String CHAR;
+
+terminal String ID;
+terminal int INTLIT;
+terminal double FLOATLIT;
+terminal String CHARLIT;
+terminal String STRINGLIT;
+terminal String NEWLINE;
+
+terminal String VAR;
+terminal String STR; //remove
+
+terminal QUESTION;
+
+terminal AUTH_PLUS;
+terminal AUTH_MINUS;
+terminal OBLIG_PLUS;
+terminal OBLIG_MINUS;
+terminal WHO;
+terminal WHAT;
+terminal WHERE;
+terminal WHY;
+terminal WHEN;
+terminal HOW;
+terminal POLICY_TYPE;
+terminal ACTION;
+terminal ORIGIN;
+terminal TARGET;
+terminal PROVIDER;
+terminal SERVICE;
+terminal DATA;
+terminal POLICY_STATEMENT;
+terminal STATEMENTS;
+terminal POLICY_ID;
+terminal STATEMENT_ID;
+terminal TRIGGER;
+
+
+non terminal CerbacPolicy cerbacPolicy;
+non terminal PolicyDecl policyDecl;
+non terminal PolicyId policyId;
+non terminal RuleBlock ruleBlock;
+non terminal ArrayList<PolicyRule> policyRules;
+non terminal PolicyRule policyRule;
+non terminal PolicyExpr policyExpr;
+non terminal PolicyIdExpr policyIdExpr;
+non terminal PolicyTypeExpr policyTypeExpr;
+non terminal WhoExpr whoExpr;
+non terminal ActionExpr actionExpr;
+non terminal ArrayList<PolicyAction> actions;
+non terminal PolicyAction policyAction;
+non terminal OptionalWhyExpr optionalWhyExpr;
+non terminal OptionalWhereExpr optionalWhereExpr;
+non terminal OptionalWhenExpr optionalWhenExpr;
+non terminal OptionalHowExpr optionalHowExpr;
+non terminal OptionalTriggerExpr optionalTriggerExpr;
+non terminal PolicyType policyType;
+non terminal WhereExpr whereExpr;
+non terminal HowExpr howExpr;
+non terminal WhenExpr whenExpr;
+non terminal WhyExpr whyExpr;
+
+
+non terminal SubjectExpr subjectExpr;
+non terminal TargetExpr targetExpr;
+non terminal ResourceTag resourceTag;
+non terminal WhatExpr whatExpr;
+non terminal ProviderExpr providerExpr;
+non terminal DataExpr dataExpr;
+non terminal ServiceExpr serviceExpr;
+non terminal ProviderStmt provideStmt;
+non terminal DataStmt dataStmt;
+non terminal ServiceStmt serviceStmt;
+non terminal OriginExpr originExpr;
+non terminal DestinationExpr destinationExpr;
+non terminal ArrayList<Origins> origins;
+non terminal Origin origin;
+non terminal ArrayList<Destination> destinations;
+non terminal Destination destination;
+
+terminal UPLUS, UMINUS;
+
+
+// TERNARY
+precedence left QUESTION;
+
+// EQUALITY
+precedence left OR;
+precedence left AND;
+
+// RELATION
+precedence left NOT_EQ, EQEQ;
+precedence left GTR, GTR_EQ, LESS, LESS_EQ;
+
+// MATH
+precedence left PLUS, MINUS;
+precedence left TIMES, DIVIDE;
+
+// UNARY
+precedence left NOT, UPLUS, UMINUS;
+
+start with cerbacPolicy;
+
+// policy = { policyDecl }
+cerbacPolicy ::=
+                POLICY_STATEMENT ASSMNT LEFT_BRACE policyDecl:pd RT_BRACE
+                {: RESULT = new CerbacPolicy(pd); :}
+                ;
+
+// policy = { pid : "ai123" }
+policyDecl ::=
+              policyId:pid ruleBlock:rBlock
+              {: RESULT = new PolicyDecl(pid, rBlock); :}
+              ;
+
+policyId ::=
+            POLICY_ID COLON STRINGLIT:pid COMMA
+            {: RESULT = new PolicyId(pid); :}
+            ;
+
+ruleBlock ::=
+            STATEMENTS COLON LEFT_BRKT policyRules:prules  RT_BRKT
+            {: RESULT = new RuleBlock(prules); :}
+            ;
+policyRules ::=
+            policyRules:prules COMMA policyRule:pr
+            {:
+                prules.add(0,pr);
+                RESULT = prules;
+            :}
+            |
+            policyRule:pr
+            {:
+                ArrayList<PolicyRule> ppHold = new ArrayList<PolicyRule>();
+                ppHold.add(pr);
+                RESULT = ppHold;
+            :}
+            ;
+
+policyRule ::=
+            LEFT_BRACE STATEMENT_ID COLON STRINGLIT:sid COMMA policyExpr:pe RT_BRACE
+            {:
+                RESULT = new PolicyRule(sid,pe);
+            :}
+            ;
+
+policyExpr ::=
+            POLICY_TYPE COLON policyType:type COMMA whoExpr:who ACTION COLON LEFT_BRKT actions:ac RT_BRKT COMMA whatExpr:what
+                optionalTriggerExpr:trig optionalWhyExpr:why optionalHowExpr:how optionalWhenExpr:when
+                    optionalWhereExpr:where
+            {:
+                RESULT = new PolicyExpr(type,who,ac,what,trig,why,how, when, where);
+            :}
+            ;
+
+policyType ::=
+            AUTH_PLUS
+			{: RESULT = new PolicyType("aplus"); :}
+			| AUTH_MINUS
+			{: RESULT = new PolicyType("aminus"); :}
+			| OBLIG_PLUS
+			{: RESULT = new PolicyType("oplus"); :}
+			| OBLIG_MINUS
+			{: RESULT = new PolicyType("ominus"); :}
+			;
+
+whoExpr ::=
+            WHO COLON STRINGLIT:who COMMA
+            {:
+                RESULT = new WhoExpr(who);
+            :}
+            ;
+
+whatExpr ::=
+            WHAT COLON STRINGLIT:what COMMA
+            {:
+                RESULT = new WhatExpr(what);
+            :}
+            ;
+
+actions ::=
+            actions:al COMMA policyAction:pa
+            {:
+                al.add(0,pa);
+                RESULT = al;
+            :}
+            |
+            policyAction:pa
+            {:
+                ArrayList<PolicyAction> ppHold = new ArrayList<PolicyAction>();
+                ppHold.add(pa);
+                RESULT = ppHold;
+            :}
+            ;
+policyAction ::=
+             STRINGLIT:action
+             {:
+              RESULT = new PolicyAction(action);
+             :}
+             ;
+optionalTriggerExpr ::=
+            TRIGGER COLON STRINGLIT:event COMMA
+            {:
+                RESULT = new OptionalTriggerExpr(event);
+            :}
+            |
+            {: RESULT = null; :}
+            ;
+optionalWhyExpr ::=
+            WHY COLON STRINGLIT:str COMMA
+            {:
+                RESULT = new OptionalWhyExpr(str);
+            :}
+            |
+            {: RESULT = null; :}
+            ;
+
+optionalHowExpr ::=
+            HOW COLON STRINGLIT:str COMMA
+            {:
+                RESULT = new OptionalHowExpr(str);
+            :}
+            |
+            {: RESULT = null; :}
+            ;
+optionalWhenExpr ::=
+            WHEN COLON STRINGLIT:str COMMA
+            {:
+                RESULT = new OptionalWhenExpr(str);
+            :}
+            |
+            {: RESULT = null; :}
+            ;
+optionalWhereExpr ::=
+            WHERE COLON STRINGLIT:str COMMA
+            {:
+                RESULT = new OptionalWhereExpr(str);
+            :}
+            |
+            {: RESULT = null; :}
+            ;

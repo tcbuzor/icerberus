@@ -1,0 +1,96 @@
+<div>
+  <h2 id="page-heading" data-cy="CerbacWhatPropHeading">
+    <span cplTranslate="cerberuxApp.cerbacWhatProp.home.title">Cerbac What Props</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span cplTranslate="cerberuxApp.cerbacWhatProp.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-cerbac-what-prop"
+        [routerLink]="['/cerbac-what-prop/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span cplTranslate="cerberuxApp.cerbacWhatProp.home.createLabel"> Create a new Cerbac What Prop </span>
+      </button>
+    </div>
+  </h2>
+
+  <cpl-alert-error></cpl-alert-error>
+
+  <cpl-alert></cpl-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="cerbacWhatProps?.length === 0">
+    <span cplTranslate="cerberuxApp.cerbacWhatProp.home.notFound">No cerbacWhatProps found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="cerbacWhatProps && cerbacWhatProps.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span cplTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacWhatProp.name">Name</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacWhatProp.value">Value</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacWhatProp.condition">Condition</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacWhatProp.entityProperty">Entity Property</span></th>
+          <th scope="col"><span cplTranslate="cerberuxApp.cerbacWhatProp.policyRule">Policy Rule</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cerbacWhatProp of cerbacWhatProps; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/cerbac-what-prop', cerbacWhatProp.id, 'view']">{{ cerbacWhatProp.id }}</a>
+          </td>
+          <td>{{ cerbacWhatProp.name }}</td>
+          <td>{{ cerbacWhatProp.value }}</td>
+          <td cplTranslate="{{ 'cerberuxApp.ConditionEnum.' + cerbacWhatProp.condition }}">{{ cerbacWhatProp.condition }}</td>
+          <td>
+            <div *ngIf="cerbacWhatProp.entityProperty">
+              <a [routerLink]="['/cerbac-entity-prop', cerbacWhatProp.entityProperty?.id, 'view']">{{
+                cerbacWhatProp.entityProperty?.propName
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="cerbacWhatProp.policyRule">
+              <a [routerLink]="['/cerbac-policy-rule', cerbacWhatProp.policyRule?.id, 'view']">{{ cerbacWhatProp.policyRule?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/cerbac-what-prop', cerbacWhatProp.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" cplTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/cerbac-what-prop', cerbacWhatProp.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" cplTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(cerbacWhatProp)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" cplTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

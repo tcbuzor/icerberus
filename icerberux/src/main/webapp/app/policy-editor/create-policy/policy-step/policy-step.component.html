@@ -1,0 +1,39 @@
+<div class="stepWrapper">
+
+
+  <div class="row">
+    <div class="col-md-8 offset-2">
+      <div class="card border-primary">
+        <form [formGroup]="cerbacPolicyForm">
+          <h5 class="card-header border-primary">Create iCerbac Policy Container</h5>
+          <div class="card-body border-primary">
+            <div class="form-group row">
+              <label for="field_pid" class="col-sm-3 col-form-label">Pid (Policy Id):</label>
+              <div class="col-sm-5">
+                <input type="text" name="isBase" id="field_pid"  class="form-control"
+                       data-cy="pid" name="pid" formControlName="pid" />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="field_pid" class="col-sm-3 col-form-label">Priority:</label>
+              <div class="col-sm-5">
+                <input type="text" name="isBase" id="field_priority"  class="form-control"
+                       data-cy="priority" name="priority" formControlName="priority" />
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div>
+              <button mat-raised-button color="primary" matStepperNext>Next</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
